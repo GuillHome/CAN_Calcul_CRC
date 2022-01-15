@@ -1,0 +1,54 @@
+Sub Makro2()
+'
+Dim ws1 As Worksheet
+Dim ws2 As Worksheet
+
+Set ws1 = Sheets("Conversion")
+Set ws2 = Sheets("Concatenation")
+Set ws3 = Sheets("Ecriture")
+
+ws1.Range("A:A").ClearContents
+
+l = 1
+
+Do While Not IsEmpty(ws3.Cells(l + 15, 1).Value)
+ws1.Cells(l, 1).Value = ws3.Cells(l + 15, 1)
+l = l + 1
+Loop
+
+ltot = l
+
+k = 1
+Do While k < ltot
+
+    j = 8
+    i = 3
+        Do While j < 27
+            
+            If Len(ws1.Cells(k, j)) = 8 Then
+            ws2.Cells(k, i) = ws1.Cells(k, j)
+            
+            ElseIf Len(ws1.Cells(k, j)) < 8 Then
+                
+                ws2.Cells(k, i) = "'0" & ws1.Cells(k, j).Value
+                
+                Do While Len(ws2.Cells(k, i)) < 8
+                ws2.Cells(k, i) = "'0" & ws2.Cells(k, i).Value
+                Loop
+            
+            Else
+            ws2.Cells(k, i) = Erreur
+            End If
+            j = j + 2
+            i = i + 1
+        Loop
+    
+    ws2.Cells(k, 12) = "'" & Left(ws2.Cells(k, 12), 4) & "0000"
+    
+    k = k + 1
+
+Loop
+
+
+
+End Sub

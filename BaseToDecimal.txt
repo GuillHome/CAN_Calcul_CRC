@@ -1,0 +1,15 @@
+
+Public Function BaseToDecimal(ByVal sNumber As String) As Long
+
+    Dim i As Integer
+    
+'sNumber = 1001010
+   
+        For i = 0 To Len(sNumber) - 1
+            BaseToDecimal = BaseToDecimal + Mid(sNumber, Len(sNumber) - i, 1) * (2 ^ i)
+        Next
+        
+        BaseToDecimalFinal = BaseToDecimal
+
+
+End Function

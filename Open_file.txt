@@ -1,0 +1,33 @@
+Sub Makro1()
+'
+
+Dim ws As Worksheet
+Dim fileToOpen As Variant
+Dim Index As Integer
+
+
+
+Set ws = Sheets("Ecriture")
+ws.Cells.Clear
+fileToOpen = Application.GetOpenFilename("Text Files (*.txt), *.txt")
+
+If fileToOpen <> False Then
+    Index = FreeFile
+
+  
+  Open fileToOpen For Input As #Index
+   
+    i = 1
+    Do Until EOF(Index)
+    Line Input #Index, Data
+    ws.Cells(i, 1) = Data
+i = i + 1
+
+Loop
+
+End If
+
+        
+Close #Index
+    
+End Sub

@@ -1,0 +1,85 @@
+Sub Makro3()
+
+Dim n As Integer
+Dim m As Integer
+
+
+Range("M:M").ClearContents
+' Polynome diviseur de degre 4 X^4+X+1
+n = 4
+
+
+' Recherche du degre du polynome dividende
+l = 817
+
+'For l = 1 To 4727
+Do While Not IsEmpty(Cells(l, 3))
+
+Total = Cells(l, 14).Value
+
+Element = "1"
+
+Pos = InStr(Total, Element)
+m = Len(Total) - Pos
+
+
+'Division en Xor
+j = 1
+i = 1
+k = 1
+Do While i < Len(Total) - 3
+
+
+If i = 1 Then
+Reste = Cells(l, 1).Value
+Else
+End If
+
+    If Left(Reste, 1) = 0 Then
+    diviseur = "00000"
+    Else
+    diviseur = 10011
+    End If
+    
+    
+Result = BaseToDecimal(Left(Reste, n + 1)) Xor BaseToDecimal(diviseur)
+Result = DecimalToBase(Result)
+
+If i < Len(Total) - 4 Then
+
+    If n + 1 + i > 8 * j Then
+    j = j + 1
+    k = 1
+    Else
+    End If
+
+    If j = 1 Then
+    Result = Right(Result, n) & Mid(Cells(l, j).Value, n + 1 + i, 1)
+    Else
+    Result = Right(Result, n) & Mid(Cells(l, j).Value, k, 1)
+    End If
+
+
+    Do While Len(Result) < n + 1
+    Result = "0" & Result
+    Loop
+    
+    Reste = Result
+
+
+Else
+Reste = Result
+End If
+
+i = i + 1
+k = k + 1
+
+Loop
+
+Cells(l, 13).Value = Reste
+
+
+l = l + 1
+Loop
+
+End Sub

@@ -1,0 +1,14 @@
+
+Public Function DecimalToBase(ByVal nNumber As Long) As String
+'nNumber = 9
+    
+    Do While (nNumber >= 1)
+        
+        DecimalToBase = (nNumber Mod 2) & DecimalToBase
+        nNumber = nNumber \ 2
+        
+        
+    Loop
+    DecimalToBaseFinal = DecimalToBase
+
+End Function
